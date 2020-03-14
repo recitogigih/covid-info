@@ -29,6 +29,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: "@/plugins/vueflags.js" },
+    { src: "@/plugins/countryflag.js" },
+    { src: "@/plugins/armcharts.js",ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -65,6 +68,7 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
+    transpile: ['@amcharts/amcharts4']
   }
 }
