@@ -58,8 +58,8 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
                 <h1 class="title is-marginless">
                   COVID 19 Information Board
                 </h1>
-                <small>by<a href="https://github.com/recitogigih" target="_blank" style="color:white"> Recito Gigih
-                    P</a></small>
+                <small><i>by <a href="https://github.com/recitogigih" target="_blank" style="color:white;">Recito Gigih
+                    P</a> using API Data by <a href="https://github.com/mathdroid" target="_blank" style="color:white">mathdroid</a></i></small>
               </div>
 
             </div>
@@ -248,7 +248,7 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
       <div class="columns">
         <div class="column is-12">
 
-          <div class="wrapper" style="height:500px; overflow:auto">
+          <div class="wrapper" style="height:650px; overflow:auto">
             <table class="table is-fullwidth is-hoverable table is-striped">
               <thead>
                 <tr>
@@ -348,14 +348,14 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
         arrDeathPercentage: [],
 
         hasilDataMap: [],
-     
+
         dataMaps: '',
 
         title: '',
         lat: '',
         long: '',
         xx: [],
-        dataobj:''
+        dataobj: ''
 
 
 
@@ -369,9 +369,10 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
       this.getConfirmbyCountry();
       this.getRecoveredbyCountry();
       this.getDeathbyCountry();
-       this.dataForChart()
+      this.dataForChart()
       this.barchart();
      
+
     },
 
 
@@ -493,58 +494,52 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
 
       dataForChart() {
 
-        //      let {
-        //   am4core,
-        //   am4charts,
-        //   am4maps,
-        //   am4themes_animated,
-        //   am4geodata_worldLow,
-        //   am4themes_dark,
+        // this.$axios.get('https://covid19.mathdro.id/api/confirmed')
+        //   .then(response => {
+        //     this.dataMaps = response.data
+        //     // this.databgst = this.dataMaps[i]
+        //     // this.lat = this.dataMaps[i].lat;
+        //     // this.long = this.this.dataMaps[i].long;
+        //     // console.log('data map-> ' + this.dataMaps)
 
-        // } = this.$am4core();
-       
-        this.$axios.get('https://covid19.mathdro.id/api/confirmed')
-          .then(response => {
-            this.dataMaps = response.data
-            // this.databgst = this.dataMaps[i]
-            // this.lat = this.dataMaps[i].lat;
-            // this.long = this.this.dataMaps[i].long;
-            // console.log('data map-> ' + this.dataMaps)
+        //     //  let colorSet = new am4core.ColorSet();
 
-            //  let colorSet = new am4core.ColorSet();
+        //     // for (let i = 0; i < this.dataMaps.length; i++) {
+        //     for (let i = 0; i < 9; i++) {
+        //       // console.log( this.dataMaps.length)
+        //       // console.log([i])
+        //       // console.log('sadadadaadadsd' + this.dataMaps[i].long)
 
-            for (let i = 0; i < this.dataMaps.length; i++) {
-              // console.log( this.dataMaps.length)
-              // console.log([i])
-              // console.log('sadadadaadadsd' + this.dataMaps[i].long)
+        //        this.dataobj = {
+        //         "title": this.dataMaps[i].countryRegion +' ' + this.dataMaps[i].provinceState,
+        //         "latitude": this.dataMaps[i].lat,
+        //         "longitude": this.dataMaps[i].long,
+        //         // "color": colorSet.next(),
+        //       }
+        //        this.xx.push(this.dataobj)
+        //       // this.res.push(dataobj)
+        //       //  this.hasilDataMap.push(this.xx)
 
-               this.dataobj = {
-                "title": this.dataMaps[i].countryRegion +' ' + this.dataMaps[i].provinceState,
-                "latitude": this.dataMaps[i].lat,
-                "longitude": this.dataMaps[i].long,
-                // "color": colorSet.next(),
-              }
-               this.xx.push(this.dataobj)
-              // this.res.push(dataobj)
-              //  this.hasilDataMap.push(this.xx)
+        //       console.log(this.xx)
 
-              console.log(this.xx)
+        //       //  return this.xx
+        //     }
+        //   })
+        //   .catch(e => {
+        //     console.log(e)
+        //   });
 
-              //  return this.xx
-            }
-          })
-          .catch(e => {
-            console.log(e)
-          });
-
-
+        //  return this.xx
       },
 
-     
+
 
 
 
       barchart() {
+
+        this.xxx = []
+
         let {
           am4core,
           am4charts,
@@ -600,7 +595,6 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
           animateBullet(event.target);
         })
 
-
         function animateBullet(circle) {
           let animation = circle.animate([{
             property: "scale",
@@ -617,114 +611,41 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
         }
 
         let colorSet = new am4core.ColorSet();
+        this.validasiProvince = []
+        this.$axios.get('https://covid19.mathdro.id/api/confirmed')
+          .then(response => {
+            this.dataMaps = response.data
+            for (let i = 0; i < this.dataMaps.length; i++) {
+                                  
+                if (this.dataMaps[i].provinceState === null) {
+                  this.validasiProvince.push('') 
+                } else {
+                  this.validasiProvince.push(this.dataMaps[i].provinceState) 
+                }
+          
+              this.dataobj = {
+                "title": this.dataMaps[i].countryRegion + ' '+ this.validasiProvince[i]+ '\nConfirmed : ' + this.dataMaps[i].confirmed + '\nRecovered : ' + this.dataMaps[i].recovered + '\nDeaths : ' + this.dataMaps[i].deaths + '\nActive : ' + this.dataMaps[i].active,
+                "latitude": this.dataMaps[i].lat,
+                "longitude": this.dataMaps[i].long,
+                "color": 'black',
+                // "color": colorSet.next(),
+              }
+              this.xxx.push(this.dataobj)
+              console.log(this.xxx)
+              imageSeries.data = this.xxx;
 
-    
-
-        imageSeries.data =  this.xx
-
-        // imageSeries.data = [{
-        //   "title": "Brussels",
-        //   "latitude": 50.8371,
-        //   "longitude": 4.3676,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Copenhagen",
-        //   "latitude": 55.6763,
-        //   "longitude": 12.5681,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Paris",
-        //   "latitude": 48.8567,
-        //   "longitude": 2.3510,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Reykjavik",
-        //   "latitude": 64.1353,
-        //   "longitude": -21.8952,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Moscow",
-        //   "latitude": 55.7558,
-        //   "longitude": 37.6176,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Madrid",
-        //   "latitude": 40.4167,
-        //   "longitude": -3.7033,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "London",
-        //   "latitude": 51.5002,
-        //   "longitude": -0.1262,
-        //   "url": "http://www.google.co.uk",
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Peking",
-        //   "latitude": 39.9056,
-        //   "longitude": 116.3958,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "New Delhi",
-        //   "latitude": 28.6353,
-        //   "longitude": 77.2250,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Tokyo",
-        //   "latitude": 35.6785,
-        //   "longitude": 139.6823,
-        //   "url": "http://www.google.co.jp",
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Ankara",
-        //   "latitude": 39.9439,
-        //   "longitude": 32.8560,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Buenos Aires",
-        //   "latitude": -34.6118,
-        //   "longitude": -58.4173,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Brasilia",
-        //   "latitude": -15.7801,
-        //   "longitude": -47.9292,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Ottawa",
-        //   "latitude": 45.4235,
-        //   "longitude": -75.6979,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Washington",
-        //   "latitude": 38.8921,
-        //   "longitude": -77.0241,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Kinshasa",
-        //   "latitude": -4.3369,
-        //   "longitude": 15.3271,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Cairo",
-        //   "latitude": 30.0571,
-        //   "longitude": 31.2272,
-        //   "color": colorSet.next()
-        // }, {
-        //   "title": "Pretoria",
-        //   "latitude": -25.7463,
-        //   "longitude": 28.1876,
-        //   "color": colorSet.next()
-        // }];
-
+            }
+          })
+          .catch(e => {
+            console.log(e)
+          });
       },
+    },
 
-      beforeDestroy() {
-
-        
-        if (this.chart) {
-          this.chart.dispose();
-        }
-      },
+    beforeDestroy() {
+      if (this.chart) {
+        this.chart.dispose();
+      }
     }
   }
 
