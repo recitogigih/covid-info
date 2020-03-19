@@ -2,7 +2,7 @@
   <div class="container-fluid">
 
     <!-- START NAV -->
-    <nav class="navbar is-white">
+    <!-- <nav class="navbar is-white">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item brand-text" href="../index.html">
@@ -35,9 +35,10 @@
 
         </div>
       </div>
-    </nav>
+    </nav> -->
     <!-- END NAV -->
     <div class="container">
+      <br>
       <div class="columns">
 
         <div class="column is-12">
@@ -130,9 +131,9 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
                     </table>
                   </div>
                 </div>
-                <footer class="card-footer">
+                <!-- <footer class="card-footer">
                   <a href="#" class="card-footer-item">View All</a>
-                </footer>
+                </footer> -->
               </div>
             </div>
             <div class="column is-3">
@@ -166,9 +167,9 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
                     </table>
                   </div>
                 </div>
-                <footer class="card-footer">
+                <!-- <footer class="card-footer">
                   <a href="#" class="card-footer-item">View All</a>
-                </footer>
+                </footer> -->
               </div>
             </div>
             <div class="column is-3">
@@ -203,12 +204,12 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
                     </table>
                   </div>
                 </div>
-                <footer class="card-footer">
+                <!-- <footer class="card-footer">
                   <a href="#" class="card-footer-item">View All</a>
-                </footer>
+                </footer> -->
               </div>
             </div>
-            <div class="column is-3">
+            <!-- <div class="column is-3">
               <div class="card events-card">
                 <header class="card-header">
                   <p class="card-header-title">
@@ -234,12 +235,12 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
                       </tbody>
                     </table>
                   </div>
-                </div>
-                <footer class="card-footer">
+                </div> -->
+                <!-- <footer class="card-footer">
                   <a href="#" class="card-footer-item">View All</a>
-                </footer>
-              </div>
-            </div>
+                </footer> -->
+              <!-- </div>
+            </div> -->
 
           </div>
         </div>
@@ -475,15 +476,14 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
       getDate() {
         let currentdate = new Date();
 
-        function days() {
-          let hariRaw = currentdate.getDay()
-          if (hariRaw = 6) {
-            return 'Saturday'
-          }
+        // function days() {
+        //   let hariRaw = currentdate.getDay()
+        //   if (hariRaw = 6) {
+        //     return 'Saturday'
+        //   }
+        // }
 
-        }
-
-        this.date = days() + ' ' + currentdate.getDate() + "/" +
+        this.date = currentdate.getDate() + "/" +
           (currentdate.getMonth() + 1) + "/" +
           currentdate.getFullYear() + " @ " +
           currentdate.getHours() + ":" +
