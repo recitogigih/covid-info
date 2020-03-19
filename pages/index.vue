@@ -631,7 +631,7 @@ box-shadow: 10px 10px 39px -6px rgba(0,0,0,0.75);">
                 // "color": colorSet.next(),
               }
               this.xxx.push(this.dataobj)
-              console.log(this.xxx)
+              // console.log(this.xxx)
               imageSeries.data = this.xxx;
 
             }
